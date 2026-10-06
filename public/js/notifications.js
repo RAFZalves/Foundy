@@ -1,0 +1,2 @@
+(async()=>{const box=$('#notifications');try{const {notifications}=await api('/api/notifications');box.innerHTML=notifications.map(n=>`<article class="card item-card"><b>${n.title}</b><p>${n.message}</p><button class="btn btn-secondary" onclick="readN(${n.id})">Marcar como lida</button></article>`).join('')||'<p class="muted">Nenhuma notificação.</p>'}catch(e){box.innerHTML='<p>Faça login para ver suas notificações.</p>'}})();
+async function readN(id){await api('/api/notifications/'+id+'/read',{method:'PATCH'});location.reload()}
