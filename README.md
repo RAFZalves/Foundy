@@ -99,3 +99,45 @@ Código padrão de equipe: FOUNDY-EQUIPE
 18. Em **Suporte**, envie uma dúvida como aluno/equipe, responda como administrador e confirme que não é possível encerrar o chamado antes da resposta.
 19. Faça logout e confirme que as áreas protegidas voltam a exigir cadastro/login.
 20. Teste o botão de tema em mais de uma página e confirme que a preferência permanece ao navegar.
+## Guia de endpoints da API
+
+A API do Foundy utiliza rotas HTTP para conectar o sistema ao banco de dados e controlar as funcionalidades da plataforma.
+
+### Autenticação
+
+* `GET /api/me` — verifica o usuário atualmente autenticado.
+* `POST /api/auth/register` — realiza o cadastro de um aluno ou membro da equipe.
+* `POST /api/auth/login` — realiza o login.
+* `POST /api/auth/logout` — encerra a sessão.
+
+### Itens e catálogo
+
+* `GET /api/items` — lista os itens disponíveis no catálogo.
+* `GET /api/items/:id` — mostra os detalhes de um item.
+* `POST /api/items` — registra um item perdido ou encontrado.
+* `PATCH /api/items/:id/status` — atualiza o status de um item.
+* `PATCH /api/admin/items/:id/found` — marca um item como encontrado.
+* `POST /api/admin/items/:id/withdraw` — registra a retirada de um item e o arquiva.
+
+### Notificações
+
+* `GET /api/notifications` — consulta as notificações do usuário.
+* `PATCH /api/notifications/:id/read` — marca uma notificação como lida.
+
+### Suporte
+
+* `POST /api/support` — cria um chamado de suporte.
+* `GET /api/support` — consulta os chamados do usuário.
+* `GET /api/admin/support` — permite ao administrador visualizar os chamados.
+* `PATCH /api/admin/support/:id/answer` — responde a um chamado.
+* `PATCH /api/admin/support/:id/close` — encerra um chamado após uma resposta.
+
+### Administração
+
+* `GET /api/admin/stats` — apresenta estatísticas do sistema e itens recentes.
+* `GET /api/admin/history` — consulta o histórico de itens resolvidos e arquivados.
+* `GET /api/admin/users` — lista e pesquisa os usuários.
+* `POST /api/admin/users` — cadastra um novo usuário.
+* `PATCH /api/admin/users/:id` — edita os dados de um usuário.
+* `DELETE /api/admin/users/:id` — bloqueia uma conta de aluno.
+
